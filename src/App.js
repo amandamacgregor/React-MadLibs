@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import Result from './Result.js'
+import Form from './Form.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        name: "Bob",
+        favMovie: "superbad"
+      }
+  }
+  updateGreeting = (name) => {
+    this.setState({name: name})
+  }
+  
+  updateMovie = (favMovie) => {
+    this.setState({favMovie: favMovie})
+  }
+  
+  render() {
+    return (
+      <div>
+        <div>
+          <Result name={this.state.name} favMovie={this.state.favMovie}/>
+          <Form
+            name={this.state.name}
+            favMovie={this.state.favMovie}
+            updateGreeting={this.updateGreeting}
+           updateMovie={this.updateMovie}
+
+          />
+        </div>
+      </div>
+      )
+  }
 }
 
 export default App;
